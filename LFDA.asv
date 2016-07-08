@@ -1,0 +1,27 @@
+function Y = LFDA(img, s, delta)
+d = sqrt(img / (4 * 4));
+dx_filter = [-1 0 1];
+dy_filter = dx_filter';
+gradient_x = imfilter(img, dx_filter);
+gradient_y = imfilter(img, dy_filter);
+m = sqrt(gradient_x .^2, gradient_y .^2);
+angle = mod(atan(gradient_y ./ (eps + gradient_x)) + 2*pi, 2*pi);
+g = exp(-bsxfun(@plus, ([-8 : 7] + 0.5) .^ 2, ([-8 : 7] + 0.5)' .^ 2) ...
+    / (2 * (0.5 * d)^2));
+
+[m, n] = size(img); 
+for x = 1 : s - delta : n
+    for y = 1 : s - delta : m
+        % keypoint location
+        kx = (x + x + s) / 2;
+        ky = (y + y + s) / 2;        
+        
+        W = kx - x;
+        for dxi = -W : min(W : n - kx
+    end
+end
+
+
+for dxi = [-8 : 7] + 0.5
+    dxi
+end
